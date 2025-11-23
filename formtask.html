@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+
+    <h2>Enter your details</h2>
+
+    <label>Name:</label>
+    <input type="text" id="nameinput" placeholder="enter your name">
+    <p id="namehint">Name must be at least 3 characters</p>
+    <p id="nameerror"></p><br>
+
+    <input type="email" id="emailinput" placeholder="enter your email">
+    <p id="emailhint">Email must conatain @</p>
+    <p id="emailerror"></p><br>
+
+    <select id="Role">
+        <option>Student</option>
+        <option>Developer</option>
+        <option>Teacher</option>
+    </select><br>
+
+    <button type="submit" id="submit_btn">submit</button>
+
+    </form>
+
+    <script>
+    // ----------------------------Name---------------------------
+    let form= document.getElementById("form")
+    let nameinput=document.getElementById("nameinput")
+    let namehint=document.getElementById("namehint")
+    let nameerror=document.getElementById("nameerror")
+
+    nameinput.addEventListener("focus",()=>{
+        namehint.style.display="block"
+    })
+    nameinput.addEventListener("blur",()=>{
+        namehint.style.display="none"
+
+        if(nameinput.value.length<=3){
+        nameerror.textContent="Name must be <= 3 characters"
+        nameerror.style.color="red"
+        }
+        else{
+           namerror.textContent=" "
+        }
+    })
+
+// ---------------------------------email--------------------------------
+
+
+    let emailinput=document.getElementById("emailinput")
+    let emailhint=document.getElementById("emailhint")
+    let emailerror=document.getElementById("emailerror")
+
+    emailinput.addEventListener("focus",()=>{
+        emailhint.style.display="block"
+    })
+    emailinput.addEventListener("blur",()=>{
+        emailhint.style.display="none"
+
+        if(!emailinput.value.includes("@")){
+
+        emailerror.textContent="Email must contain @"
+        emailerror.style.color="red"
+        }
+        else{
+           emailerror.textContent=" "
+        }
+    })
+
+// -----------------------------Role-------------------------------
+    let selectrole= document.getElementById("Role")
+    selectrole.addEventListener("change",()=>{
+        console.log("selected role:",selectrole.value)
+    })
+
+
+// --------------------------------submit-------------------------------    
+
+    // let submit=document.getElementById("submit_btn")
+    
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault()
+    
+        let valid=true
+
+        if (nameinput.value.length < 3) valid = false;
+
+        if (!emailinput.value.includes("@")) valid = false;
+        
+        if(valid){
+            alert("Form submitted successfully") 
+        }
+        else{
+            alert("please fix the errors")
+        }
+    })
+
+
+
+
+
+   </script>
+</body>
+</html>
